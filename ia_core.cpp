@@ -85,7 +85,7 @@ ia_find_chessboard_points( const Mat *image, const Size boardSize,
       return -1;
 
     /* improve the found corners' coordinate accuracy */
-    cornerSubPix ( t_img, (*pointbuf), Size(11,11), Size(-1,-1),
+    cornerSubPix ( t_img, (*pointbuf), Size(5,5), Size(-1,-1),
                    TermCriteria( CV_TERMCRIT_EPS+CV_TERMCRIT_ITER, 30, 0.1 ) );
   }catch (cv::Exception){return -1;}
 }
@@ -225,7 +225,6 @@ ia_image_calc_intr ( const char **images, const Size boardSize,
 
   /*lets show the process*/
   namedWindow ( "Output", 1 );
-
   for ( int i = 0 ; images[i] != '\0' ; i++ )
   {
     /* get next image*/
