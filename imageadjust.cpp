@@ -59,7 +59,7 @@ main ( int argc, char** argv ) {
                        input->squareSize );
     else
       ia_imageadjust ( (const char**)input->images, input->b_size,
-                       input->squareSize, &input->camMat, &input->disMat );
+                       input->squareSize, input->camMat, input->disMat );
 
   }else if (input->objective == VIDEO_DEMO )
     ia_calculate_and_capture ( input->b_size, input->delay, input->vid_file,

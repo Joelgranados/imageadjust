@@ -36,8 +36,10 @@ ia_init_input_struct ( struct ia_input *input )
    */
   input->iif = NULL;
 
-  input->camMat = Mat::eye(3, 3, CV_64F);
-  input->disMat = Mat::zeros(5, 1, CV_64F);
+  input->camMat = new Mat();
+  *input->camMat = Mat::eye(3, 3, CV_64F);
+  input->disMat = new Mat();
+  *input->disMat = Mat::zeros(5, 1, CV_64F);
 
   input->camera_id = -1; //no camera id unless specified.
   input->vid_file = NULL;
@@ -64,8 +66,8 @@ ia_init_input_struct ( struct ia_input *input )
 static void
 ia_free_input_struct ( struct ia_input *input )
 {
-  input->camMat.release();
-  input->disMat.release();
+  input->camMat->release();
+  input->disMat->release();
   free(input);
 }
 
@@ -75,8 +77,8 @@ ia_print_input_struct ( const struct ia_input *input )
   if ( input == NULL )
     return;
 
-  Mat cm = input->camMat;
-  Mat dm = input->disMat;
+  Mat cm = *input->camMat;
+  Mat dm = *input->disMat;
   fprintf(stdout, "Arguments used for input:\n"
 
       "Filename: %s\n"
@@ -335,8 +337,8 @@ ia_init_input ( int argc, char **argv)
         case 'i':
           /* Notihing changes if ia_get_intrinsics_from_file returns false. */
           if (optarg
-              && ia_get_intrinsics_from_file(optarg, &(input->camMat),
-                    &(input->disMat)) )
+              && ia_get_intrinsics_from_file(optarg, input->camMat,
+                    input->disMat) )
           {
             input->iif = optarg;
           }

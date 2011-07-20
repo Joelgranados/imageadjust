@@ -27,8 +27,8 @@ struct ia_input
 {
   char* iif; //The intrinsic input file.
 
-  cv::Mat camMat; //The camera matrix.
-  cv::Mat disMat; //The distortion matrix.
+  cv::Mat* camMat; //The camera matrix.
+  cv::Mat* disMat; //The distortion matrix.
 
   int camera_id;
   char* vid_file; //Video file to use instead of the camera.
