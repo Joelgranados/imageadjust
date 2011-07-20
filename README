@@ -1,4 +1,9 @@
-If you have the opencv library and a starndard linux installation `make` should
+Note that the functionality that interests me within this project has been
+transfered to imageLabel (https://github.com/Joelgranados/imagelabel).  I'll
+keep this code here just in case I need to port more logic into other projects.
+I'm not maintaining this at all.
+
+If you have the opencv library and a standard linux installation `make` should
 work.
 
 BUGS:
